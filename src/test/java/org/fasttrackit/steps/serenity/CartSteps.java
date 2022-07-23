@@ -13,11 +13,17 @@ public class CartSteps extends ScenarioSteps {
 
     @Step
     public void clickAddToCart(){
+
         productPage.clickAddToCartButton();
     }
     @Step
     public void verifySuccessMessage(String productName){
         cartPage.verifySuccessMessage(productName);
+    }
+
+    @Step
+    public void verifyNoResultMessage(){
+        cartPage.verifyNoResultErrorMessage();
     }
 
     @Step

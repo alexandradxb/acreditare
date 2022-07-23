@@ -2,6 +2,7 @@ package org.fasttrackit.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.junit.Assert;
 
 import java.util.List;
 
@@ -9,6 +10,9 @@ public class CartPage extends BasePage {
 
     @FindBy(css = ".success-msg span")
     private WebElementFacade successMessage;
+
+    @FindBy(css = ".note-msg")
+    private WebElementFacade noResultMessage;
 
     @FindBy(css = ".product-cart-total .price")
     private List<WebElementFacade> listOfProductsSubTotalSpan;
@@ -22,8 +26,16 @@ public class CartPage extends BasePage {
     @FindBy(css = "tfoot .a-right .price")
     private WebElementFacade cartGrandTotalPriceSpan;
 
+    @FindBy(css = ".product-cart-info .product-name")
+    private List<WebElementFacade> productImage;
+
+
     public void verifySuccessMessage(String productName) {
         successMessage.shouldContainOnlyText(productName + " was added to your shopping cart.");
+    }
+
+    public void verifyNoResultErrorMessage() {
+        noResultMessage.shouldContainOnlyText("Your search returns no results.");
     }
 
     public int getSubtotalPriceFromProducts() {
@@ -49,5 +61,11 @@ public class CartPage extends BasePage {
 
     }
 
+    public void verifyProductInCart(String productName) {int sum = 0;
+
+        for (WebElementFacade element : productImage) {
+            Assert.assertTrue(element.getText().equalsIgnoreCase(productName));
+        }
+    }
 
 }

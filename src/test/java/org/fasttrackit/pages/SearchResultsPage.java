@@ -12,6 +12,9 @@ public class SearchResultsPage extends PageObject {
     @FindBy(css = ".products-grid li.item")
     private List<WebElementFacade> productsList;
 
+    @FindBy(css = ".products-grid li.item .price")
+    private List<WebElementFacade> productPrices;
+
     public boolean checkListForProduct(String productName){
         for(WebElementFacade element : productsList){
             if(element.findElement(By.cssSelector(".product-name a")).getText().equalsIgnoreCase(productName)){
@@ -27,5 +30,24 @@ public class SearchResultsPage extends PageObject {
                 break;
             }
         }
+    }
+
+    public boolean checkNewProducts(String productName){
+        for(WebElementFacade element : productsList){
+            if(element.findElement(By.cssSelector(".product-name a")).getText().equalsIgnoreCase(productName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifyNewProductsPrice(String price) {
+
+        for(WebElementFacade element : productPrices){
+            if(element.getText().equalsIgnoreCase(price)){
+                return true;
+            }
+        }
+        return false;
     }
 }

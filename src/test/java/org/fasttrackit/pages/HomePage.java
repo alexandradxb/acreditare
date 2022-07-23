@@ -19,6 +19,15 @@ public class HomePage extends PageObject {
     @FindBy(id = "select-language")
     private WebElementFacade languageDropdown;
 
+    @FindBy(css = ".skip-cart")
+    private WebElementFacade cartIcon;
+
+    @FindBy(css = ".cart-link")
+    private WebElementFacade cartItemsLink;
+
+    @FindBy(css = "li .level1 nav-4-3 a.level1")
+    private WebElementFacade electronicsLink;
+
 
     public void clickAccountLink() {
         clickOn(accountLink);
@@ -49,5 +58,15 @@ public class HomePage extends PageObject {
         String y = x.replace(".00 RON","");
         String[] z = x.split(",");
 
+    }
+
+    public void clickCartIcon() {
+        waitFor(cartIcon);
+        clickOn(cartIcon);
+    }
+
+    public void clickCartItemsLink() {
+        waitFor(cartItemsLink);
+        clickOn(cartItemsLink);
     }
 }

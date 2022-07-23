@@ -2,15 +2,14 @@ package org.fasttrackit.steps.serenity;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.fasttrackit.pages.AccountPage;
-import org.fasttrackit.pages.HomePage;
-import org.fasttrackit.pages.LoginPage;
+import org.fasttrackit.pages.*;
 
 public class LoginSteps extends ScenarioSteps {
 
     private HomePage homePage;
     private LoginPage loginPage;
     private AccountPage accountPage;
+
 
     @Step
     public void navigateToHomepage() {
@@ -46,4 +45,6 @@ public class LoginSteps extends ScenarioSteps {
         setCredentials(email, password);
         clickLogin();
     }
+
+
 }

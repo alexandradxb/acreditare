@@ -31,4 +31,29 @@ public class CartTest extends BaseTest {
         cartSteps.checkCartSubtotalIsCorrect();
         cartSteps.checkCartGrandTotalIsCorrect();
     }
+
+    @Test
+    public void searchForUnexistingProduct() {
+        loginSteps.doLogin(Constants.USER_EMAIL, Constants.USER_PASS);
+        searchSteps.doSearch("earings");
+        cartSteps.verifyNoResultMessage();
+    }
+
+    @Test
+    public void checkCartItems(){
+        loginSteps.doLogin(Constants.USER_EMAIL, Constants.USER_PASS);
+        searchSteps.checkCartItems("Silver Desert Necklace");
+    }
+
+    @Test
+    public void addItemToWishlist(){
+        loginSteps.doLogin(Constants.USER_EMAIL,Constants.USER_PASS);
+        productSteps.addElectronicsToWishlist();
+    }
+
+    @Test
+    public void removeItemFromWishlist(){
+        loginSteps.doLogin(Constants.USER_EMAIL,Constants.USER_PASS);
+        productSteps.removeElectronicsFromWishlist();
+    }
 }
